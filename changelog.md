@@ -1,5 +1,8 @@
 # Changelog
 
+- 重构模块管理页界面：品牌头部、卡片化布局、底部悬浮导航栏、开关式选项与全新配色（含暗色模式），加入入场/吐司动效与焦点可见性等细节，功能与交互逻辑完全不变
+- Refresh the module web UI: brand header, card layout, floating bottom navigation bar, switch-style toggles and a new palette (with dark mode), plus entry/toast motion and focus-visible details — behaviour and interactions are unchanged
+
 - 项目更名为 **AdGuardHomeForFree**，仓库地址迁移至 `YuyuAww/AdGuardHomeForFree`，模块显示名、打包产物名（`AdGuardHomeForFree_<arch>.zip`）与文档链接同步更新
 - Rename the project to **AdGuardHomeForFree** and move the repository to `YuyuAww/AdGuardHomeForFree`; the module display name, packaged ZIP names (`AdGuardHomeForFree_<arch>.zip`) and all documentation links follow the new name
 - 模块 id 同步改为 `AdGuardHomeForFree`，安装目录变为 `/data/adb/modules/AdGuardHomeForFree`，按全新模块安装，不再与旧模块共用 id

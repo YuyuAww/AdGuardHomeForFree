@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="color-scheme" content="light dark">
     <title>AdGuardHome Config</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='8'%20fill='%2316a34a'/%3E%3Cpath%20d='M16%205.5l9.5%203.7v7.3c0%205.8-3.9%2010.4-9.5%2012-5.6-1.6-9.5-6.2-9.5-12V9.2z'%20fill='%23ffffff'/%3E%3Cpath%20d='M11.6%2016.1l3%203%205.8-6.1'%20fill='none'%20stroke='%2316a34a'%20stroke-width='2.4'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 
@@ -12,206 +14,232 @@
 
     <div id="toast-container" class="toast-wrap"></div>
 
-    <div class="status-line" id="status-container">
-        <span class="dot"></span>
+    <div class="page">
 
-        <span id="status-text" data-i18n="status.checking" class="status-text">
-            Checking...
-        </span>
+        <header class="app-header">
+            <div class="brand">
+                <span class="brand-mark" aria-hidden="true"></span>
 
-        <span id="pid-badge" class="hidden pid-badge">
-        </span>
-
-        <span class="spacer"></span>
-
-        <span id="agh-version" class="version-text">
-            v...
-        </span>
-
-        <select id="lang-switch" class="input lang-select-sm">
-            <option value="en">EN</option>
-            <option value="zh">ZH</option>
-        </select>
-    </div>
-
-    <div class="btn-row">
-        <button class="btn btn-primary" id="btn-start" data-i18n="button.start">
-            Start Core
-        </button>
-
-        <button class="btn btn-danger" id="btn-stop" data-i18n="button.stop">
-            Stop Core
-        </button>
-    </div>
-
-    <button class="btn btn-secondary btn-full" id="btn-link-panel" data-i18n="button.panel">
-        Open AdGuardHome Panel
-    </button>
-
-    <div class="tab-btn-row">
-        <button class="tab-btn active" data-tab="settings" data-i18n="tab.settings">
-            Settings
-        </button>
-
-        <button class="tab-btn" data-tab="logs" data-i18n="tab.logs">
-            Logs
-        </button>
-
-        <button class="tab-btn" data-tab="tools" data-i18n="tab.tools">
-            Maintenance
-        </button>
-
-        <button class="tab-btn" data-tab="subs" data-i18n="tab.subs">
-            Subscriptions
-        </button>
-    </div>
-
-    <div id="tab-settings" class="tab-content active">
-
-        <div class="card">
-
-            <h3 data-i18n="settings.title">
-                Traffic Redirection
-            </h3>
-
-            <div class="setting-row flex-between">
-                <div>
-                    <div data-i18n="settings.enable_iptables">
-                        Enable iptables
+                <div class="brand-copy">
+                    <div class="brand-title" data-i18n="app.title">
+                        AdGuardHome Config
                     </div>
 
-                    <div data-i18n="settings.enable_iptables_desc" class="desc">
-                        Automatically redirect DNS traffic at system level
+                    <div class="version-text" id="agh-version">
+                        v...
                     </div>
                 </div>
-
-                <input type="checkbox" id="conf-enable_iptables" class="checkbox">
             </div>
 
-            <div class="setting-row flex-between">
-                <div>
-                    <div data-i18n="settings.block_ipv6">
-                        Block IPv6 DNS
-                    </div>
+            <select id="lang-switch" class="input lang-select-sm">
+                <option value="en">EN</option>
+                <option value="zh">ZH</option>
+            </select>
+        </header>
 
-                    <div data-i18n="settings.block_ipv6_desc" class="desc">
-                        Prevent DNS bypass via IPv6
-                    </div>
-                </div>
+        <div class="status-line" id="status-container">
+            <span class="dot"></span>
 
-                <input type="checkbox" id="conf-block_ipv6_dns" class="checkbox">
-            </div>
+            <span id="status-text" data-i18n="status.checking" class="status-text">
+                Checking...
+            </span>
 
-            <div class="field">
-                <label data-i18n="settings.redir_port">
-                    DNS Redirect Port
-                </label>
-                <input type="number" class="input" id="conf-redir_port" placeholder="5591">
-            </div>
+            <span class="spacer"></span>
 
-            <div class="field">
-                <label data-i18n="settings.user">
-                    Runtime User (UID)
-                </label>
-                <input type="text" class="input" id="conf-adg_user" placeholder="root">
-            </div>
-
-            <div class="field">
-                <label data-i18n="settings.group">
-                    Runtime Group (GID)
-                </label>
-                <input type="text" class="input" id="conf-adg_group" placeholder="net_raw">
-            </div>
-
-            <button class="btn btn-primary btn-full" id="btn-save" data-i18n="button.save">
-                Save & Apply Configuration
-            </button>
-
+            <span id="pid-badge" class="hidden pid-badge">
+            </span>
         </div>
-    </div>
-
-    <div id="tab-logs" class="tab-content">
-
-        <div class="btn-row log-btn-row">
-
-            <button class="btn btn-secondary active btn-sm" data-log="bin" data-i18n="logs.core">
-                Core Log
-            </button>
-
-            <button class="btn btn-secondary btn-sm" data-log="module" data-i18n="logs.history">
-                History
-            </button>
-
-            <button class="btn btn-secondary btn-sm" id="btn-refresh-log" data-i18n="logs.refresh">
-                Refresh
-            </button>
-
-        </div>
-
-        <div id="log-content" data-i18n="logs.waiting">
-            Waiting for logs...
-        </div>
-
-    </div>
-
-    <div id="tab-tools" class="tab-content">
 
         <div class="card">
-
-            <h3 data-i18n="tools.title">
-                System Maintenance
-            </h3>
-
             <div class="btn-row">
-
-                <button class="btn btn-secondary" id="btn-debug" data-i18n="tools.generate_debug">
-                    Generate Debug Log
+                <button type="button" class="btn btn-primary" id="btn-start" data-i18n="button.start">
+                    Start Core
                 </button>
 
-                <button class="btn btn-secondary" id="btn-open-debug" data-i18n="tools.open_debug">
-                    Open Debug Log
+                <button type="button" class="btn btn-danger" id="btn-stop" data-i18n="button.stop">
+                    Stop Core
                 </button>
-
             </div>
 
+            <button type="button" class="btn btn-secondary btn-full" id="btn-link-panel" data-i18n="button.panel">
+                Open AdGuardHome Panel
+            </button>
         </div>
 
-    </div>
-
-    <div id="tab-subs" class="tab-content">
-
-        <div class="card">
-
-            <h3 data-i18n="subs.title">
-                Filter Subscriptions
-            </h3>
-
-            <div class="desc" data-i18n="subs.desc">
-                Manage the blocklist subscriptions of AdGuardHome (the filters section of AdGuardHome.yaml).
-            </div>
-
-            <div id="subs-list" class="subs-list"></div>
-
-            <div class="field">
-                <label data-i18n="subs.url">
-                    Subscription URL
-                </label>
-                <input type="url" class="input" id="sub-url" data-i18n-placeholder="subs.url_ph" spellcheck="false" autocomplete="off">
-            </div>
-
-            <div class="field">
-                <label data-i18n="subs.name">
-                    Name (optional)
-                </label>
-                <input type="text" class="input" id="sub-name" data-i18n-placeholder="subs.name_ph" spellcheck="false" autocomplete="off">
-            </div>
-
-            <button class="btn btn-primary btn-full" id="btn-sub-add" data-i18n="subs.add">
-                Add Subscription
+        <div class="tab-btn-row">
+            <button type="button" class="tab-btn active" data-tab="settings" data-i18n="tab.settings">
+                Settings
             </button>
 
-            <div class="desc" data-i18n="subs.hint">
-                Changes are written to AdGuardHome.yaml (the old file is backed up as .bak) and the core is restarted to apply them.
+            <button type="button" class="tab-btn" data-tab="logs" data-i18n="tab.logs">
+                Logs
+            </button>
+
+            <button type="button" class="tab-btn" data-tab="tools" data-i18n="tab.tools">
+                Maintenance
+            </button>
+
+            <button type="button" class="tab-btn" data-tab="subs" data-i18n="tab.subs">
+                Subscriptions
+            </button>
+        </div>
+
+        <div class="tab-panels">
+
+            <div id="tab-settings" class="tab-content active">
+
+                <div class="card">
+
+                    <h3 data-i18n="settings.title">
+                        Traffic Redirection
+                    </h3>
+
+                    <div class="setting-row flex-between">
+                        <div>
+                            <div data-i18n="settings.enable_iptables">
+                                Enable iptables
+                            </div>
+
+                            <div data-i18n="settings.enable_iptables_desc" class="desc">
+                                Automatically redirect DNS traffic at system level
+                            </div>
+                        </div>
+
+                        <input type="checkbox" id="conf-enable_iptables" class="checkbox">
+                    </div>
+
+                    <div class="setting-row flex-between">
+                        <div>
+                            <div data-i18n="settings.block_ipv6">
+                                Block IPv6 DNS
+                            </div>
+
+                            <div data-i18n="settings.block_ipv6_desc" class="desc">
+                                Prevent DNS bypass via IPv6
+                            </div>
+                        </div>
+
+                        <input type="checkbox" id="conf-block_ipv6_dns" class="checkbox">
+                    </div>
+
+                    <div class="field">
+                        <label data-i18n="settings.redir_port">
+                            DNS Redirect Port
+                        </label>
+                        <input type="number" class="input" id="conf-redir_port" placeholder="5591">
+                    </div>
+
+                    <div class="field">
+                        <label data-i18n="settings.user">
+                            Runtime User (UID)
+                        </label>
+                        <input type="text" class="input" id="conf-adg_user" placeholder="root">
+                    </div>
+
+                    <div class="field">
+                        <label data-i18n="settings.group">
+                            Runtime Group (GID)
+                        </label>
+                        <input type="text" class="input" id="conf-adg_group" placeholder="net_raw">
+                    </div>
+
+                    <button type="button" class="btn btn-primary btn-full" id="btn-save" data-i18n="button.save">
+                        Save &amp; Apply Configuration
+                    </button>
+
+                </div>
+            </div>
+
+            <div id="tab-logs" class="tab-content">
+
+                <div class="card">
+
+                    <div class="btn-row log-btn-row">
+
+                        <button type="button" class="btn btn-secondary active btn-sm" data-log="bin" data-i18n="logs.core">
+                            Core Log
+                        </button>
+
+                        <button type="button" class="btn btn-secondary btn-sm" data-log="module" data-i18n="logs.history">
+                            History
+                        </button>
+
+                        <button type="button" class="btn btn-secondary btn-sm" id="btn-refresh-log" data-i18n="logs.refresh">
+                            Refresh
+                        </button>
+
+                    </div>
+
+                    <div id="log-content" data-i18n="logs.waiting">
+                        Waiting for logs...
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="tab-tools" class="tab-content">
+
+                <div class="card">
+
+                    <h3 data-i18n="tools.title">
+                        System Maintenance
+                    </h3>
+
+                    <div class="btn-row">
+
+                        <button type="button" class="btn btn-secondary" id="btn-debug" data-i18n="tools.generate_debug">
+                            Generate Debug Log
+                        </button>
+
+                        <button type="button" class="btn btn-secondary" id="btn-open-debug" data-i18n="tools.open_debug">
+                            Open Debug Log
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="tab-subs" class="tab-content">
+
+                <div class="card">
+
+                    <h3 data-i18n="subs.title">
+                        Filter Subscriptions
+                    </h3>
+
+                    <div class="desc" data-i18n="subs.desc">
+                        Manage the blocklist subscriptions of AdGuardHome (the filters section of AdGuardHome.yaml).
+                    </div>
+
+                    <div id="subs-list" class="subs-list"></div>
+
+                    <div class="field">
+                        <label data-i18n="subs.url">
+                            Subscription URL
+                        </label>
+                        <input type="url" class="input" id="sub-url" data-i18n-placeholder="subs.url_ph" spellcheck="false" autocomplete="off">
+                    </div>
+
+                    <div class="field">
+                        <label data-i18n="subs.name">
+                            Name (optional)
+                        </label>
+                        <input type="text" class="input" id="sub-name" data-i18n-placeholder="subs.name_ph" spellcheck="false" autocomplete="off">
+                    </div>
+
+                    <button type="button" class="btn btn-primary btn-full" id="btn-sub-add" data-i18n="subs.add">
+                        Add Subscription
+                    </button>
+
+                    <div class="desc" data-i18n="subs.hint">
+                        Changes are written to AdGuardHome.yaml (the old file is backed up as .bak) and the core is restarted to apply them.
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
