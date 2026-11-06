@@ -26,18 +26,19 @@
 
 **A:**
 
-- 打开[模块管理页](configuration.md#2-模块管理页-web-ui)，切换到“密码计算”分页（KernelSU / APatch 管理器中的“管理”按钮）。
-- 填入用户名（默认 `root`）和新密码，点击“计算哈希”，页面会在本地算出 bcrypt 哈希。
-- 点击“写入配置”，再点击一次以确认，哈希会被写入 `/data/adb/agh/bin/AdGuardHome.yaml`，原文件会被备份为 `AdGuardHome.yaml.bak`。
-- 重启核心后使用新密码登录。
+AdGuardHome 的密码以 bcrypt 哈希保存在 `/data/adb/agh/bin/AdGuardHome.yaml` 的 `users` 段，无法反推，只能生成新的哈希覆盖：
 
-当然，你也可以在“计算哈希”后点击“复制”，然后手动编辑 `/data/adb/agh/bin/AdGuardHome.yaml`，把 `users` 段中的 `password` 替换为该哈希：
+- 先停止核心（模块管理页的“停止核心”）。核心运行时不能编辑该文件，否则 AdGuardHome 退出时会用内存里的配置把它覆盖掉。
+- 生成新密码的 bcrypt 哈希，例如在电脑上执行 `htpasswd -B -C 12 -n root`，或使用任意可靠的 bcrypt 生成工具。
+- 编辑 `/data/adb/agh/bin/AdGuardHome.yaml`，把 `users` 段中的 `password` 替换为该哈希：
 
 ```yaml
 users:
   - name: root
     password: $2b$12$D3zeMIBFfzcQTqGqB.k7GOkMvqx1jgsrdiRCn2kwOHl.kNmmPfMom
 ```
+
+- 启动核心后用新密码登录。
 
 需要注意：`password` 字段必须填入 bcrypt 哈希（形如 `$2b$12$` 开头的 60 个字符），不能直接填入明文密码；`cost` 越大越安全，计算也越慢，一般使用 10–12 即可。
 
@@ -46,6 +47,15 @@ users:
 **A:**
 
 打开 [AdGuardHome 后台](configuration.md#1-adguardhome-后台)，在“过滤器 -> 自定义过滤规则”中添加自建规则或规则源，保存后立即生效，无需重启模块。也可以在同一后台的“DNS 设置”中修改上游 DNS、启用 DNSSEC 等。
+
+### **Q: 如何添加自定义的拦截规则订阅源？**
+
+**A:**
+
+- 打开[模块管理页](configuration.md#2-模块管理页-web-ui)的“订阅源”分页，填入规则源地址（`http`/`https`，通常是 `.txt` 结尾的文本列表）和可选名称，点击“添加订阅”。
+- 该分页会列出 `AdGuardHome.yaml` 中 `filters` 段的全部订阅，可以随时启用、停用或删除（删除需在 5 秒内点两次确认）。
+- 修改会写入 `/data/adb/agh/bin/AdGuardHome.yaml`，原文件自动备份为 `.bak`；核心正在运行时会自动重启核心，新订阅在核心启动后自动下载。
+- 也可以在 [AdGuardHome 后台](configuration.md#1-adguardhome-后台)的“过滤器”页面里管理订阅，那里修改后立即生效。
 
 ### **Q: 如何仅使用 DNS 服务而不使用 iptables 转发规则？**
 

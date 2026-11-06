@@ -1,4 +1,4 @@
-# AdGuardHome for Root 文档 / Documentation
+# AdGuardHomeForFree 文档 / Documentation
 
 本模块仅适用于已经 root 的安卓设备，支持 [Magisk](https://github.com/topjohnwu/Magisk) / [KernelSU](https://github.com/tiann/KernelSU) / [APatch](https://github.com/bmax121/APatch) 等 root 工具。
 

@@ -3,8 +3,8 @@
 #
 # Download AdGuardHome binaries (linux arm64 / armv7), extract them
 # and pack Magisk/KernelSU modules:
-#   cache/AdGuardHomeForRoot_arm64.zip
-#   cache/AdGuardHomeForRoot_armv7.zip
+#   cache/AdGuardHomeForFree_arm64.zip
+#   cache/AdGuardHomeForFree_armv7.zip
 #
 # Usage:
 #   ./pack.sh [arm64|armv7|all]   # default: all
@@ -125,7 +125,7 @@ done
 echo "Packing AdGuardHome (using $ZIP_TOOL)..."
 for arch in $ARCHS; do
   binary="$CACHE_DIR/$arch/AdGuardHome/AdGuardHome"
-  output="$CACHE_DIR/AdGuardHomeForRoot_${arch}.zip"
+  output="$CACHE_DIR/AdGuardHomeForFree_${arch}.zip"
 
   if [ ! -f "$binary" ]; then
     echo "Binary not found: $binary" >&2

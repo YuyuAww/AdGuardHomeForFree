@@ -1,4 +1,4 @@
-name: Pack AdGuardHomeForRoot
+name: Pack AdGuardHomeForFree
 
 on:
   workflow_dispatch:
@@ -39,4 +39,4 @@ jobs:
           tag_name: ${{ github.ref_name }}
           name: ${{ github.ref_name }}
           body_path: changelog.md
-          files: cache/AdGuardHomeForRoot_*.zip
+          files: cache/AdGuardHomeForFree_*.zip

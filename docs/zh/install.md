@@ -9,7 +9,7 @@
 
 ## 安装步骤
 
-1. 前往 [Release](https://github.com/twoone-3/AdGuardHomeForRoot/releases/latest) 页面下载对应架构的 zip 文件
+1. 前往 [Release](https://github.com/YuyuAww/AdGuardHomeForFree/releases/latest) 页面下载对应架构的 zip 文件
 2. 打开 **设置 -> 网络和互联网 -> 高级 -> 私人 DNS**，将其关闭（原因见 [常见问题](faq.md)）
 3. 在 root 管理器中安装模块，完成后重启设备
 4. 模块启动成功后，可访问 <http://127.0.0.1:3000> 进入 [AdGuardHome 后台](configuration.md#1-adguardhome-后台)，默认账号和密码均为 `root`

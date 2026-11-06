@@ -9,4 +9,4 @@ done
 busybox pkill -f "inotifyd /data/adb/agh/scripts/inotify.sh" 2>/dev/null ||
   pkill -f "inotifyd /data/adb/agh/scripts/inotify.sh" 2>/dev/null
 
-inotifyd /data/adb/agh/scripts/inotify.sh /data/adb/modules/AdGuardHome:d,n &
+inotifyd /data/adb/agh/scripts/inotify.sh /data/adb/modules/AdGuardHomeForFree:d,n &

@@ -49,7 +49,7 @@ Linux / macOS（需要 `curl` 或 `wget`、`tar`，以及 `zip`、`7z`/`7za`、`
 
 1. 创建 `cache` 目录（如果尚未存在）。
 2. 下载并缓存最新版本的 AdGuardHome（仅在 `cache` 目录中未找到缓存时执行下载）。
-3. 将 AdGuardHome 与 `src/` 的内容打包成 ZIP（输出至 `cache/AdGuardHomeForRoot_<arch>.zip`）。
+3. 将 AdGuardHome 与 `src/` 的内容打包成 ZIP（输出至 `cache/AdGuardHomeForFree_<arch>.zip`）。
 
 产物 ZIP 的结构与 `src/` 一致，AdGuardHome 二进制位于 `bin/AdGuardHome`。脚本具有缓存机制：如果 `cache` 目录中已存在 AdGuardHome 的缓存版本，则不会重复下载，从而节省时间和带宽。
 

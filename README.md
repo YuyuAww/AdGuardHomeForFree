@@ -1,10 +1,10 @@
-# AdGuardHome for Root
+# AdGuardHomeForFree
 
 [English](README_en.md) | 简体中文
 
 ![arm-64 support](https://img.shields.io/badge/arm--64-support-ef476f?logo=linux&logoColor=white&color=ef476f)
 ![arm-v7 support](https://img.shields.io/badge/arm--v7-support-ffa500?logo=linux&logoColor=white&color=ffa500)
-![GitHub downloads](https://img.shields.io/github/downloads/twoone-3/AdGuardHomeForRoot/total?logo=github&logoColor=white&color=ffd166)
+![GitHub downloads](https://img.shields.io/github/downloads/YuyuAww/AdGuardHomeForFree/total?logo=github&logoColor=white&color=ffd166)
 ![License](https://img.shields.io/badge/License-MIT-9b5de5?logo=opensourceinitiative&logoColor=white)
 [![Docs](https://img.shields.io/badge/Docs-Guide-0066ff?logo=book&logoColor=white)](docs/index.md)
 [![Join Telegram Channel](https://img.shields.io/badge/Telegram-Join%20Channel-06d6a0?logo=telegram&logoColor=white)](https://t.me/twoone3_tech_tips)
@@ -28,7 +28,7 @@
 
 ## 快速开始
 
-1. 前往 [Release](https://github.com/twoone-3/AdGuardHomeForRoot/releases/latest) 页面下载模块
+1. 前往 [Release](https://github.com/YuyuAww/AdGuardHomeForFree/releases/latest) 页面下载模块
 2. 检查 Android 设置 -> 网络和互联网 -> 高级 -> 私人 DNS，确保 `私人 DNS` 关闭
 3. 在 root 管理器中安装模块，重启设备
 4. 若看到模块运行成功的提示，则可以访问 <http://127.0.0.1:3000> 进入 AdGuardHome 后台，默认用户密码 root/root

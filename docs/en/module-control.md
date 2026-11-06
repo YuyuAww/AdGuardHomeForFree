@@ -8,7 +8,7 @@ Open the [module web UI](configuration.md#2-module-web-ui) and tap "Start core" 
 
 ## Option 2: The disable file (shell / file manager)
 
-The module watches the `disable` file in `/data/adb/modules/AdGuardHome`:
+The module watches the `disable` file in `/data/adb/modules/AdGuardHomeForFree`:
 
 - If the file exists, the module is disabled (core stopped, iptables rules removed)
 - If the file does not exist, the module is enabled
@@ -17,9 +17,9 @@ Use these commands to switch states:
 
 ```shell
 # disable
-touch /data/adb/modules/AdGuardHome/disable
+touch /data/adb/modules/AdGuardHomeForFree/disable
 # enable
-rm /data/adb/modules/AdGuardHome/disable
+rm /data/adb/modules/AdGuardHomeForFree/disable
 ```
 
 ## Option 3: Call the helper script directly

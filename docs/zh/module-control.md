@@ -8,7 +8,7 @@
 
 ## 方法二：通过配置文件标识 (Shell / 文件管理器)
 
-模块会实时监测 `/data/adb/modules/AdGuardHome` 目录下的 `disable` 文件：
+模块会实时监测 `/data/adb/modules/AdGuardHomeForFree` 目录下的 `disable` 文件：
 
 - 存在该文件则禁用模块（停止核心并移除 iptables 规则）
 - 不存在该文件则启用模块
@@ -17,9 +17,9 @@
 
 ```shell
 # 停用
-touch /data/adb/modules/AdGuardHome/disable
+touch /data/adb/modules/AdGuardHomeForFree/disable
 # 启用
-rm /data/adb/modules/AdGuardHome/disable
+rm /data/adb/modules/AdGuardHomeForFree/disable
 ```
 
 ## 方法三：直接调用工具脚本

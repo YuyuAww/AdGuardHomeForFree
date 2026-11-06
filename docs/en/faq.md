@@ -26,18 +26,19 @@ Private DNS (DoT / DoH) uses ports 853 / 443 and never touches port 53, so the m
 
 **A:**
 
-- Open the [module web UI](configuration.md#2-module-web-ui) and switch to the "Password" tab (the "Manage" button in KernelSU / APatch managers).
-- Enter the username (default `root`) and a new password, then tap "Calculate hash" — the bcrypt hash is computed locally in the page.
-- Tap "Write config" and confirm once more. The hash is written to `/data/adb/agh/bin/AdGuardHome.yaml` and the original file is backed up as `AdGuardHome.yaml.bak`.
-- Restart the core and log in with the new password.
+The AdGuardHome panel password is stored as a bcrypt hash in the `users` section of `/data/adb/agh/bin/AdGuardHome.yaml`; it cannot be reversed, so you have to overwrite it with a fresh hash:
 
-Alternatively, tap "Copy" after calculating the hash and edit `/data/adb/agh/bin/AdGuardHome.yaml` yourself, replacing `password` in the `users` section with that hash:
+- Stop the core first (the "Stop Core" button in the module web UI). Do not edit that file while the core is running, or AdGuardHome overwrites it with its in-memory configuration when it exits.
+- Generate a bcrypt hash for the new password, for example with `htpasswd -B -C 12 -n root` on a computer, or any trustworthy bcrypt generator.
+- Edit `/data/adb/agh/bin/AdGuardHome.yaml` and replace `password` in the `users` section with that hash:
 
 ```yaml
 users:
   - name: root
     password: $2b$12$D3zeMIBFfzcQTqGqB.k7GOkMvqx1jgsrdiRCn2kwOHl.kNmmPfMom
 ```
+
+- Start the core and log in with the new password.
 
 Note: the `password` field must contain a bcrypt hash (60 characters starting with `$2b$12$`), never a plaintext password. A higher `cost` is more secure but slower to compute; 10–12 is usually enough.
 
@@ -46,6 +47,15 @@ Note: the `password` field must contain a bcrypt hash (60 characters starting wi
 **A:**
 
 Open the [AdGuardHome panel](configuration.md#1-adguardhome-panel) and add your own rules or rule lists under "Filters -> Custom filtering rules". Changes take effect immediately, no module restart needed. You can also change upstream DNS servers and enable DNSSEC under "DNS settings" in the same panel.
+
+### **Q: How do I add my own filter subscription (rule source)?**
+
+**A:**
+
+- Open the "Subscriptions" tab of the [module web UI](configuration.md#2-module-web-ui), enter the rule source URL (`http`/`https`, usually a `.txt` list) and an optional name, then tap "Add Subscription".
+- The tab lists every subscription in the `filters` section of `AdGuardHome.yaml`; you can enable, disable or delete them at any time (a deletion needs two taps within 5 seconds).
+- Changes are written to `/data/adb/agh/bin/AdGuardHome.yaml` with the original file backed up as `.bak`; if the core is running it is restarted automatically, and new subscriptions are downloaded once the core starts.
+- You can also manage subscriptions in the "Filters" page of the [AdGuardHome panel](configuration.md#1-adguardhome-panel), where changes apply immediately.
 
 ### **Q: How do I use DNS only, without the iptables redirect rules?**
 

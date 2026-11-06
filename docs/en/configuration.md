@@ -23,7 +23,7 @@ In the module web UI you can:
 - **Service control**: start, stop and restart the core with one tap.
 - **Logs**: built-in highlighted viewers for the core log and the module run history.
 - **Maintenance**: export a debug bundle with one tap and open the generated `debug.log` with the system file viewer.
-- **Password calculator**: turn a plaintext password into the bcrypt hash required by `AdGuardHome.yaml`; copy it or write it back to the config file (a `.bak` backup is created first, and the core must be restarted for it to take effect). Available since module version `20261016` (versionCode 54).
+- **Subscription manager**: add, enable/disable or remove AdGuardHome blocklist subscriptions (the `filters` section of `AdGuardHome.yaml`) from the "Subscriptions" tab, with a custom rule source URL and name; the old file is backed up as `.bak` first, the core is restarted automatically so the change takes effect, and new subscriptions are downloaded once the core starts. Deleting an entry requires two taps within 5 seconds.
 
 If you prefer a standalone app to manage the AdGuardHome core, try [AdGuard Home Manager](https://github.com/JGeek00/adguard-home-manager).
 
@@ -49,7 +49,7 @@ The module configuration file is `/data/adb/agh/settings.conf`. You can edit it 
 The module uses two directories:
 
 - **`/data/adb/agh`**: AdGuardHome core files, including the binary, helper scripts and configuration.
-- **`/data/adb/modules/AdGuardHome`**: the module's boot scripts and runtime data.
+- **`/data/adb/modules/AdGuardHomeForFree`**: the module's boot scripts and runtime data.
 
 There are also two configuration files:
 

@@ -317,13 +317,38 @@ h3 {
     font-size: 12px;
 }
 
-/* 密码计算页 */
-.textarea-mono {
-    font-family: monospace;
-    font-size: 12px;
-    line-height: 1.45;
+/* 订阅源分页 */
+.subs-list {
+    margin-bottom: 14px;
+}
+
+.sub-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.sub-name {
+    font-weight: 600;
+    font-size: 14px;
     word-break: break-all;
-    resize: vertical;
+}
+
+.sub-url {
+    word-break: break-all;
+    margin-bottom: 8px;
+}
+
+.subs-empty {
+    padding: 8px 0;
+}
+
+.btn-inline {
+    flex: none;
+    width: auto;
+    display: inline-flex;
+    padding: 6px 14px;
 }
 
 .btn:disabled {

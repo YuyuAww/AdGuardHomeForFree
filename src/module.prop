@@ -1,7 +1,7 @@
-id=AdGuardHome
-name=AdGuardHome for Root
+id=AdGuardHomeForFree
+name=AdGuardHomeForFree
 version=20261027
 versionCode=55
 author=twoone3
 description=none
-updateJson=https://raw.githubusercontent.com/twoone-3/AdGuardHomeForRoot/main/version.json
+updateJson=https://raw.githubusercontent.com/YuyuAww/AdGuardHomeForFree/main/version.json
