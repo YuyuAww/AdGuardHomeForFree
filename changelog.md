@@ -1,5 +1,11 @@
 # Changelog
 
+- 修复订阅页无法读取现有订阅源的问题：`filters:` 后不带值（块序列写法）被误判为空列表，导致刷新后列表为空，且新增订阅时会覆盖掉原有条目
+- Fixed the subscription page failing to read existing sources: a bare `filters:` line (block-sequence style) was mistaken for an empty list, so the list showed empty after a refresh and adding a new source overwrote the existing entries
+- 修复开关打开时滑块停在中部的问题，滑块现在按 MD3 规范停在轨道末端
+- Fixed the switch knob resting in the middle when enabled; it now sits at the end of the track as MD3 specifies
+- 运行状态指示器改为只显示在顶部应用栏（状态 + 版本同一行），不再在每个分页重复；服务控制按钮移入“设置”分页
+- The run status indicator now lives only in the app bar (status and version on one line) instead of repeating on every tab; the service controls moved into the Settings tab
 - 项目更名为 AdGuardHomeForFree，模块名称、Release 下载地址与更新检查地址同步指向新仓库
 - Renamed the project to AdGuardHomeForFree; the module name, release download URL and update-check URL now point at the new repository
 - 新增模块管理页“订阅”分页：可直接增删改 `AdGuardHome.yaml` 中的过滤规则订阅（拦截规则与白名单），支持启用/停用、内置常用规则源一键填入，点击“应用”时自动停止核心、备份为 `.bak`、写入配置并重启核心

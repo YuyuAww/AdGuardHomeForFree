@@ -28,6 +28,11 @@
 
   "settings.title": "Traffic Redirection",
   "settings.desc": "Redirect system DNS traffic to AdGuardHome.",
+
+  "control.title": "Service Control",
+  "control.desc": "Start, stop or restart the local DNS core.",
+  "control.run_state": "Core Process",
+  "control.pid_none": "Not running",
   "settings.enable_iptables": "Enable iptables",
   "settings.enable_iptables_desc": "Automatically redirect DNS traffic at system level",
   "settings.block_ipv6": "Block IPv6 DNS",

@@ -22,7 +22,13 @@
 
         <div class="app-bar-text">
             <div class="app-bar-title" data-i18n="app.name">AdGuardHome</div>
-            <div class="app-bar-subtitle" id="agh-version">v...</div>
+
+            <div class="app-bar-status" id="status-container">
+                <span class="dot" aria-hidden="true"></span>
+                <span class="app-bar-status-text" id="status-text">Checking...</span>
+                <span class="app-bar-status-sep" aria-hidden="true">·</span>
+                <span class="app-bar-version" id="agh-version">v...</span>
+            </div>
         </div>
 
         <span class="spacer"></span>
@@ -34,39 +40,48 @@
 
     <main class="app-content">
 
-        <section class="hero-card" id="status-container">
-            <div class="hero-status">
-                <span class="dot" aria-hidden="true"></span>
-
-                <div class="hero-text">
-                    <h1 class="hero-title" id="status-text">Checking...</h1>
-                    <div class="hero-pid hidden" id="pid-badge"></div>
-                </div>
-
-                <span class="chip chip-tonal" id="status-chip" data-i18n="status.checking">Checking...</span>
-            </div>
-
-            <div class="btn-row btn-row-tight">
-                <button class="btn btn-filled" id="btn-start" type="button" data-i18n="button.start">
-                    Start Core
-                </button>
-
-                <button class="btn btn-tonal" id="btn-stop" type="button" data-i18n="button.stop">
-                    Stop Core
-                </button>
-
-                <button class="btn btn-outline" id="btn-restart" type="button" data-i18n="button.restart">
-                    Restart
-                </button>
-            </div>
-
-            <button class="btn btn-tonal btn-block" id="btn-link-panel" type="button" data-i18n="button.panel">
-                Open AdGuardHome Panel
-            </button>
-        </section>
-
         <!-- ============================ Settings ============================ -->
         <section class="tab-content active" id="tab-settings" role="tabpanel">
+
+            <div class="section-head">
+                <h2 data-i18n="control.title">Service Control</h2>
+                <p class="support" data-i18n="control.desc">
+                    Start, stop or restart the local DNS core.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="list-item static">
+                    <div class="list-leading" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15V7l6 5-6 5z" />
+                        </svg>
+                    </div>
+
+                    <div class="list-body">
+                        <div class="list-title" data-i18n="control.run_state">Core Process</div>
+                        <div class="list-sub" id="pid-badge">PID —</div>
+                    </div>
+                </div>
+
+                <div class="btn-row btn-row-tight">
+                    <button class="btn btn-filled" id="btn-start" type="button" data-i18n="button.start">
+                        Start Core
+                    </button>
+
+                    <button class="btn btn-tonal" id="btn-stop" type="button" data-i18n="button.stop">
+                        Stop Core
+                    </button>
+
+                    <button class="btn btn-outline" id="btn-restart" type="button" data-i18n="button.restart">
+                        Restart
+                    </button>
+                </div>
+
+                <button class="btn btn-tonal btn-block" id="btn-link-panel" type="button" data-i18n="button.panel">
+                    Open AdGuardHome Panel
+                </button>
+            </div>
 
             <div class="section-head">
                 <h2 data-i18n="settings.title">Traffic Redirection</h2>

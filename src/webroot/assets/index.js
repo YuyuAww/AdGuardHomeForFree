@@ -39,8 +39,6 @@
     let currentStatus = "checking";
     const elements = {
         statusText: $('status-text'),
-        statusChip: $('status-chip'),
-        statusContainer: $('status-container'),
         pidBadge: $('pid-badge'),
         version: $('agh-version'),
         logContent: $('log-content'),
@@ -83,13 +81,7 @@
         document.body.classList.toggle('stopped', !isRunning);
         currentStatus = isRunning ? "running" : "stopped";
         elements.statusText.textContent = t(`status.${currentStatus}`);
-        elements.statusChip.textContent = t(`status.${currentStatus}`);
-        if (isRunning) {
-            elements.pidBadge.textContent = "PID " + pid;
-            elements.pidBadge.classList.remove('hidden');
-        } else {
-            elements.pidBadge.classList.add('hidden');
-        }
+        elements.pidBadge.textContent = isRunning ? "PID " + pid : t("control.pid_none");
 
         if (!window._loaded) {
             const conf = {};
@@ -409,13 +401,18 @@
 
         const result = { block: [], allow: [] };
 
-        if (block.inline !== '[]' && block.inline !== '') {
+        // An empty inline value means the block sequence follows on the next
+        // lines, which is how AdGuardHome writes a non-empty list:
+        //   filters:
+        //     - enabled: true
+        // Only an explicit `[]` means the list really is empty.
+        if (block.inline !== '[]') {
             const parsed = parseEntryLines(lines, block.start, block.end);
             if (!parsed) return null;
             result.block = parsed;
         }
 
-        if (allow && allow.inline !== '[]' && allow.inline !== '') {
+        if (allow && allow.inline !== '[]') {
             const parsed = parseEntryLines(lines, allow.start, allow.end);
             if (!parsed) return null;
             result.allow = parsed;
@@ -1006,7 +1003,7 @@
     document.addEventListener("languageChanged", () => {
         if (currentStatus === "running" || currentStatus === "stopped") {
             elements.statusText.textContent = t(`status.${currentStatus}`);
-            elements.statusChip.textContent = t(`status.${currentStatus}`);
+            if (currentStatus === "stopped") elements.pidBadge.textContent = t("control.pid_none");
         }
         if (filterState.loaded) renderFilters();
         if (filterEl.scrim.classList.contains('hidden') === false) {
@@ -1026,6 +1023,5 @@
         setInterval(refresh, 5000);
     } else {
         elements.statusText.textContent = t("toast.open_manager");
-        elements.statusChip.textContent = t("toast.open_manager");
     }
 })();

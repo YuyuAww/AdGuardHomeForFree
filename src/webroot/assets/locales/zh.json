@@ -28,6 +28,11 @@
 
   "settings.title": "流量重定向",
   "settings.desc": "把系统 DNS 流量重定向到 AdGuardHome 处理。",
+
+  "control.title": "服务控制",
+  "control.desc": "启动、停止或重启本地 DNS 核心。",
+  "control.run_state": "核心进程",
+  "control.pid_none": "未运行",
   "settings.enable_iptables": "启用 iptables",
   "settings.enable_iptables_desc": "自动在系统层面重定向 DNS 流量",
   "settings.block_ipv6": "拦截 IPv6 DNS",
