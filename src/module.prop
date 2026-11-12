@@ -1,7 +1,7 @@
 id=AdGuardHome
-name=AdGuardHome for Root
-version=20261027
-versionCode=55
+name=AdGuardHomeForFree
+version=20261112
+versionCode=56
 author=twoone3
-description=none
-updateJson=https://raw.githubusercontent.com/twoone-3/AdGuardHomeForRoot/main/version.json
+description=这是一个支持 Magisk/KernelSU/APatch、通过本地 DNS 轻量拦截广告/恶意软件/跟踪器、可独立运行 AdGuardHome 并与其他代理共存的安卓模块。
+updateJson=https://raw.githubusercontent.com/YuyuAww/AdGuardHomeForFree/main/version.json

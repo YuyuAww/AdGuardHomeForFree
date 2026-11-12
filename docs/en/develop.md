@@ -10,8 +10,8 @@ For developers. Regular users should start at the [documentation index](../index
 .
 ├── src/                  # module sources (mapped to the ZIP root when packing)
 │   ├── bin/              # AdGuardHome.yaml and other runtime files
-│   ├── scripts/          # tool.sh / iptables.sh / inotify.sh / debug.sh / base.sh
-│   ├── webroot/          # module web UI
+│   ├── scripts/          # tool.sh / iptables.sh / inotify.sh / debug.sh / filters.sh / base.sh
+│   ├── webroot/          # module web UI (Material Design 3)
 │   ├── customize.sh      # installer (keep/backup logic for config files)
 │   ├── service.sh        # boot service
 │   ├── action.sh         # root manager action button
@@ -49,7 +49,7 @@ The script then automatically:
 
 1. Creates the `cache` directory if needed.
 2. Downloads and caches the latest AdGuardHome (skipped when the cache already has it).
-3. Packs AdGuardHome and the contents of `src/` into a ZIP (`cache/AdGuardHomeForRoot_<arch>.zip`).
+3. Packs AdGuardHome and the contents of `src/` into a ZIP (`cache/AdGuardHomeForFree_<arch>.zip`).
 
 The resulting ZIP mirrors the layout of `src/`, with the AdGuardHome binary at `bin/AdGuardHome`. Because AdGuardHome is cached, repeated runs do not download it again.
 

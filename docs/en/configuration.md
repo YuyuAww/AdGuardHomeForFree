@@ -21,9 +21,12 @@ In the module web UI you can:
 - **Edit settings graphically**: change parameters in `settings.conf` (iptables switch, IPv6 blocking, run-as user/group, etc.) without editing files by hand.
 - **Status overview**: live core status, PID and version, plus a shortcut to the AdGuardHome panel.
 - **Service control**: start, stop and restart the core with one tap.
+- **Custom subscriptions**: manage the filter list subscriptions in `AdGuardHome.yaml` (`filters` / `whitelist_filters`) on the "Sources" tab — add, edit, enable or disable and delete entries, with one-tap presets for popular lists. Tapping "Apply" stops the core, writes the configuration (backing it up as `.bak` first) and restarts the core, so the change takes effect immediately.
 - **Logs**: built-in highlighted viewers for the core log and the module run history.
 - **Maintenance**: export a debug bundle with one tap and open the generated `debug.log` with the system file viewer.
 - **Password calculator**: turn a plaintext password into the bcrypt hash required by `AdGuardHome.yaml`; copy it or write it back to the config file (a `.bak` backup is created first, and the core must be restarted for it to take effect). Available since module version `20261016` (versionCode 54).
+
+The web UI follows Material Design 3, uses a bottom navigation bar (Settings / Sources / Logs / Tools / Password) and follows the system light or dark theme.
 
 If you prefer a standalone app to manage the AdGuardHome core, try [AdGuard Home Manager](https://github.com/JGeek00/adguard-home-manager).
 

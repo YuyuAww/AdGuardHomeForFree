@@ -24,13 +24,11 @@ class I18n {
 
         await this.loadLanguage(this.lang);
 
-        const selector = document.getElementById("lang-switch");
+        const toggle = document.getElementById("lang-switch");
 
-        if (selector) {
-            selector.value = this.lang;
-
-            selector.addEventListener("change", async (e) => {
-                await this.setLanguage(e.target.value);
+        if (toggle) {
+            toggle.addEventListener("click", async () => {
+                await this.setLanguage(this.lang === "zh" ? "en" : "zh");
             });
         }
     }
@@ -109,6 +107,26 @@ class I18n {
                 element.placeholder =
                     this.t(key);
             });
+
+        document
+            .querySelectorAll("[data-i18n-aria-label]")
+            .forEach((element) => {
+
+                const key =
+                    element.dataset
+                        .i18nAriaLabel;
+
+                element.setAttribute(
+                    "aria-label",
+                    this.t(key)
+                );
+            });
+
+        const label = document.getElementById("lang-label");
+
+        if (label) {
+            label.textContent = this.lang.toUpperCase();
+        }
 
         document.title =
             this.t("app.title");

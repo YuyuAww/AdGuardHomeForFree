@@ -45,7 +45,9 @@ users:
 
 **A:**
 
-打开 [AdGuardHome 后台](configuration.md#1-adguardhome-后台)，在“过滤器 -> 自定义过滤规则”中添加自建规则或规则源，保存后立即生效，无需重启模块。也可以在同一后台的“DNS 设置”中修改上游 DNS、启用 DNSSEC 等。
+方式一（推荐）：打开[模块管理页](configuration.md#2-模块管理页-web-ui)，切换到“订阅”分页。点击右下角 `+` 添加订阅源，可直接选择推荐规则源自动填入名称与链接，也可以自行填写。保存后点击“应用”，页面会停止核心、把订阅写入 `AdGuardHome.yaml`（自动备份为 `.bak`）并重启核心，配置立即生效。
+
+方式二：打开 [AdGuardHome 后台](configuration.md#1-adguardhome-后台)，在“过滤器 -> 自定义过滤规则”中添加自建规则或规则源，保存后立即生效，无需重启模块。也可以在同一后台的“DNS 设置”中修改上游 DNS、启用 DNSSEC 等。
 
 ### **Q: 如何仅使用 DNS 服务而不使用 iptables 转发规则？**
 

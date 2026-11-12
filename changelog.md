@@ -1,12 +1,12 @@
 # Changelog
 
-- 修复软重启后启停模块可能误杀系统进程的严重问题：瞬态 AdGuardHome 进程的 PID 会覆盖 agh.pid，该 PID 被复用到系统进程后，关闭模块会向它发送 SIGTERM（实测击中 system_server）导致设备重启 (#85)
-- Fix a critical bug where starting/stopping the module after a soft reboot could kill a system process: a transient AdGuardHome PID overwrote agh.pid, the PID was later reused by a system process, and stopping the module sent it SIGTERM (system_server in practice), rebooting the device (#85)
-- 进程身份改为按 /proc/<pid>/comm 校验：重入检测不再依赖 ps，软重启后直接接管仍在运行的核心；确认进程存活后才写入 PID；停止时只终止真正的 AdGuardHome 进程 (#85)
-- Identify processes by /proc/<pid>/comm: the re-entry check no longer relies on ps, a core that survived a soft reboot is adopted instead of respawned, the PID is written only after the process is confirmed, and stop only signals real AdGuardHome processes (#85)
-- 监听就绪检测先校验进程存活；service.sh 启动前清理残留的 inotifyd；修复 ksud 更新模块描述缺少 KSU_MODULE；安装器不再用 pkill -f 误杀自身 (#85)
-- Check process liveness before the DNS listener check, clean up stale inotifyd instances in service.sh, pass KSU_MODULE when updating the module description via ksud, and stop the installer's pkill -f from matching itself (#85)
-- 文档拆分为中文 / 英文两个目录，统一以 docs/index.md 作为双语索引
-- Split the docs into Chinese / English directories with docs/index.md as the shared bilingual index
-- CI 不再上传 Actions 产物，改由单个任务直接打包并发布，安装包统一从 Releases 获取
-- CI no longer uploads Actions artifacts; a single job builds and publishes directly, so install packages come only from Releases
+- 项目更名为 AdGuardHomeForFree，模块名称、Release 下载地址与更新检查地址同步指向新仓库
+- Renamed the project to AdGuardHomeForFree; the module name, release download URL and update-check URL now point at the new repository
+- 新增模块管理页“订阅”分页：可直接增删改 `AdGuardHome.yaml` 中的过滤规则订阅（拦截规则与白名单），支持启用/停用、内置常用规则源一键填入，点击“应用”时自动停止核心、备份为 `.bak`、写入配置并重启核心
+- Add a "Sources" tab to the module web UI: manage the filter list subscriptions in `AdGuardHome.yaml` (block and allow), enable or disable each entry, fill in popular lists with one tap, and apply by stopping the core, backing up as `.bak`, writing the config and restarting the core automatically
+- 写入前由 `scripts/filters.sh` 校验暂存文件（体积、关键段、必需字段），校验失败不会覆盖现有配置，核心也不会被留在停止状态
+- `scripts/filters.sh` validates the staged file (size, required sections, required keys) before replacing the config, so a failed write never clobbers the live config and never leaves the core stopped
+- 模块管理页重构为 Material Design 3 风格：底部导航、顶部应用栏、MD3 卡片/按钮/开关/对话框与 Snackbar，并随系统自动切换浅色与深色主题
+- Rebuilt the module web UI in Material Design 3 style: bottom navigation, app bar, MD3 cards/buttons/switches/dialogs and snackbars, following the system light or dark theme
+- 语言切换改为顶部应用栏按钮，支持 `data-i18n-aria-label`，补齐新增界面的中英文文案
+- Language switching moved to an app bar button, added `data-i18n-aria-label` support and completed the Chinese/English strings for the new screens

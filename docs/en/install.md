@@ -9,7 +9,7 @@
 
 ## Installation
 
-1. Download the zip for your architecture from the [Release](https://github.com/twoone-3/AdGuardHomeForRoot/releases/latest) page
+1. Download the zip for your architecture from the [Release](https://github.com/YuyuAww/AdGuardHomeForFree/releases/latest) page
 2. Open **Settings -> Network & Internet -> Advanced -> Private DNS** and turn it off (see [FAQ](faq.md))
 3. Install the module in your root manager and reboot the device
 4. Once the module is running, open <http://127.0.0.1:3000> to access the [AdGuardHome panel](configuration.md#1-adguardhome-panel); the default username and password are both `root`

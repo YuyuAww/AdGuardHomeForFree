@@ -45,7 +45,9 @@ Note: the `password` field must contain a bcrypt hash (60 characters starting wi
 
 **A:**
 
-Open the [AdGuardHome panel](configuration.md#1-adguardhome-panel) and add your own rules or rule lists under "Filters -> Custom filtering rules". Changes take effect immediately, no module restart needed. You can also change upstream DNS servers and enable DNSSEC under "DNS settings" in the same panel.
+Option 1 (recommended): open the [module web UI](configuration.md#2-module-web-ui) and switch to the "Sources" tab. Tap `+` to add a subscription; pick a recommended source to fill in the name and URL automatically, or enter your own. After saving, tap "Apply": the page stops the core, writes the subscriptions into `AdGuardHome.yaml` (backing it up as `.bak` first) and restarts the core, so the change takes effect immediately.
+
+Option 2: open the [AdGuardHome panel](configuration.md#1-adguardhome-panel) and add your own rules or rule lists under "Filters -> Custom filtering rules". Changes take effect immediately, no module restart needed. You can also change upstream DNS servers and enable DNSSEC under "DNS settings" in the same panel.
 
 ### **Q: How do I use DNS only, without the iptables redirect rules?**
 
